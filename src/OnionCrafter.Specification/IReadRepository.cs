@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OnionCrafter.Base.Entities;
 
 namespace OnionCrafter.Specification
 {
-    public interface IReadRepository
+    public interface IReadRepository<TEntity, TKey> : IBaseRepository<TEntity> where TEntity : IEntity<TKey>
     {
     }
 }
