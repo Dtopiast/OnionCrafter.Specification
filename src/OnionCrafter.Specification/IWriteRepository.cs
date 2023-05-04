@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnionCrafter.Specification
 {
-    internal interface IWriteRepository
+    public interface IWriteRepository
     {
     }
 }
