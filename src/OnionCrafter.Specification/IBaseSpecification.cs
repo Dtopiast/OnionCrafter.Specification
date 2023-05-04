@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnionCrafter.Specification
 {
-    public class IBaseSpecification
+    public interface IBaseSpecification
     {
     }
 }
