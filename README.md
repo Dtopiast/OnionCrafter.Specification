@@ -13,7 +13,7 @@ OnionCrafter.Specification es una librería de .NET 7 que proporciona una base s
 
 ## Requisitos previos
 
-Para utilizar OnionCrafter.Specification, es necesario tener instalada la versión 7 de .NET.
+Para utilizar OnionCrafter.Specification, es necesario tener instalada la versión 7 de .NET y OnionCrafter.Common.
 
 ## Instalación
 
