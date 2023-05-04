@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnionCrafter.Specification
 {
-    public interface IBaseRepository
+    public interface IBaseRepository : IDisposable
     {
     }
 }
