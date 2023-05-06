@@ -1,6 +1,8 @@
-﻿namespace OnionCrafter.Specification
+﻿using OnionCrafter.Base.Entities;
+
+namespace OnionCrafter.Specification
 {
-    public interface ISpecification<T> where T : class
+    public interface ISpecification<T> where T : IBaseEntity
     {
     }
 }
