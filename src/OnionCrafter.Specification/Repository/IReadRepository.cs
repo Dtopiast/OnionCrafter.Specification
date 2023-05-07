@@ -1,6 +1,6 @@
 ﻿using OnionCrafter.Base.Entities;
 
-namespace OnionCrafter.Specification
+namespace OnionCrafter.Specification.Repository
 {
     public interface IReadRepository<TEntity, TKey> : IBaseRepository<TEntity> where TEntity : IEntity<TKey>
     {
