@@ -82,11 +82,6 @@ namespace OnionCrafter.Specification.Repository
             throw new NotImplementedException();
         }
 
-        public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<bool> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();

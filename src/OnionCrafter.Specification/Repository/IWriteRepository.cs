@@ -20,7 +20,5 @@ namespace OnionCrafter.Specification.Repository
         Task<bool> RemoveAsync(TEntity entity, CancellationToken cancellationToken = default);
 
         Task<bool> RemoveRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
-
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }
