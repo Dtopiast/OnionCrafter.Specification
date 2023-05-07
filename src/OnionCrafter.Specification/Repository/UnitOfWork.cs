@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace OnionCrafter.Specification.Repository
 {
-    public class UnitOfWork : IRepositoryFactory
+    public class UnitOfWork<TDBContext> : IRepositoryFactory, IUnitOfWork<TDBContext>
+        where TDBContext : IDBContext
     {
     }
 }
