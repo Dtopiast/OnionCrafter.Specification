@@ -11,7 +11,7 @@ namespace OnionCrafter.Specification
     {
         Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken = default);
 
-        Task<IEnumerable<TEntity>> CreateRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
+        Task<IEnumerable<TEntity>> CreateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
 
         Task<bool> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
 
