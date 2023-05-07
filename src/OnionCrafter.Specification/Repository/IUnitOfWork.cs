@@ -13,6 +13,8 @@ namespace OnionCrafter.Specification.Repository
 
     public interface IUnitOfWork<TDBContext> : IUnitOfWork
     {
-        void RollbackAsync();
+        Task RollbackAsync();
+
+        Task BeginAsync();
     }
 }
