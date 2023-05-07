@@ -11,5 +11,8 @@ namespace OnionCrafter.Specification.Repository
     public class UnitOfWorkOptions : IServiceOptions
     {
         public bool UseLogger { get; set; }
+        public string? RollbackMessageLogger { get; set; }
+        public string? CommitMessageLogger { get; set; }
+        public string? BeginMessageLogger { get; set; }
     }
 }
