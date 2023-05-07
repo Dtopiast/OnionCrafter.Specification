@@ -2,7 +2,7 @@
 
 namespace OnionCrafter.Specification.Repository
 {
-    public interface IReadRepository<TEntity, TKey> : IBaseRepository<TEntity> where TEntity : IEntity<TKey>
+    public interface IReadRepository<TEntity, TKey> : IBaseRepository where TEntity : IEntity<TKey>
     {
         Task<TEntity?> GetByIdAsync(TKey id, CancellationToken cancellationToken = default);
 

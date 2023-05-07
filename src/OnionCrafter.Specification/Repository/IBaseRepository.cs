@@ -8,7 +8,7 @@ using OnionCrafter.Base.Entities;
 
 namespace OnionCrafter.Specification
 {
-    public interface IBaseRepository<TEntity> : IDisposable where TEntity : IBaseEntity
+    public interface IBaseRepository : IDisposable
     {
     }
 }

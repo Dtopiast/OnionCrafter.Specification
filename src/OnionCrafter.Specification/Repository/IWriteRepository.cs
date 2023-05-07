@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnionCrafter.Specification.Repository
 {
-    public interface IWriteRepository<TEntity, TKey> : IBaseRepository<TEntity> where TEntity : IEntity<TKey>
+    public interface IWriteRepository<TEntity, TKey> : IBaseRepository where TEntity : IEntity<TKey>
     {
         Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken = default);
 
