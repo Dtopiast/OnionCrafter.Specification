@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace OnionCrafter.Specification.Repository
 {
     //IServiceOptions debe de tener tipado
-    public class UnitOfWorkSettings : IServiceOptions
+    public class UnitOfWorkOptions : IServiceOptions
     {
         public bool UseLogger { get; set; }
     }
