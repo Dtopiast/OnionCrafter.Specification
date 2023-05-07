@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using OnionCrafter.Base.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace OnionCrafter.Specification.Repository
 {
     public interface IDBContext : IDisposable
     {
+        public DatabaseFacade Database { get; }
+
         public DbSet<TEntity> Set<TEntity>() where TEntity : class, IBaseEntity;
 
         public Task<int> SaveChangesAsync(CancellationToken cancellationTaken = new CancellationToken());
