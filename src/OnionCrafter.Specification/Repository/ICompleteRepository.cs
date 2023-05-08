@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnionCrafter.Specification
 {
-    public interface IRepository<TEntity, TKey> : IWriteRepository<TEntity, TKey>, IReadRepository<TEntity, TKey>
+    public interface ICompleteRepository<TEntity, TKey> : IWriteRepository<TEntity, TKey>, IReadRepository<TEntity, TKey>
         where TEntity : IEntity<TKey>
 
     {
