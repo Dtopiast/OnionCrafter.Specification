@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnionCrafter.Specification.Repository
 {
-    public class Repository<TEntity, TKey> : IRepository<TEntity, TKey>
+    public class Repository<TEntity, TKey> : ICompleteRepository<TEntity, TKey>
         where TEntity : IEntity<TKey>
     {
         private readonly IDBContext _context;
