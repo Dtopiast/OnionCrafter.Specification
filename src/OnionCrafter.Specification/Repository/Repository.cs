@@ -17,6 +17,8 @@ namespace OnionCrafter.Specification.Repository
             _context = context;
         }
 
+        public RepositoryPrivilegesType RepositoryPrivileges => RepositoryPrivilegesType.Complete;
+
         public Task<bool> AnyAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
