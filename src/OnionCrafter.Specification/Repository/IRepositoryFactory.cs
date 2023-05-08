@@ -9,10 +9,10 @@ namespace OnionCrafter.Specification.Repository
 {
     public interface IRepositoryFactory
     {
-        IRepository<TEntity, TKey> GetCompleteRepository<TEntity, TKey>() where TEntity : IEntity<TKey>;
+        Task<ICompleteRepository<TEntity, TKey>> GetCompleteRepositoryAsync<TEntity, TKey>() where TEntity : IEntity<TKey>;
 
-        IReadRepository<TEntity, TKey> GetReadRepository<TEntity, TKey>() where TEntity : IEntity<TKey>;
+        Task<IReadRepository<TEntity, TKey>> GetReadRepositoryAsync<TEntity, TKey>() where TEntity : IEntity<TKey>;
 
-        IWriteRepository<TEntity, TKey> GetWriteRepository<TEntity, TKey>() where TEntity : IEntity<TKey>;
+        Task<IWriteRepository<TEntity, TKey>> GetWriteRepositoryAsync<TEntity, TKey>() where TEntity : IEntity<TKey>;
     }
 }
