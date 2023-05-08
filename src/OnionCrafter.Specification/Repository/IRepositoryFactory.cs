@@ -9,7 +9,7 @@ namespace OnionCrafter.Specification.Repository
 {
     public interface IRepositoryFactory
     {
-        IRepository<TEntity, TKey> GetRepository<TEntity, TKey>() where TEntity : IEntity<TKey>;
+        IRepository<TEntity, TKey> GetCompleteRepository<TEntity, TKey>() where TEntity : IEntity<TKey>;
 
         IReadRepository<TEntity, TKey> GetReadRepository<TEntity, TKey>() where TEntity : IEntity<TKey>;
 
