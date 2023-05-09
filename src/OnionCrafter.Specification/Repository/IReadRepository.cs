@@ -1,5 +1,4 @@
 ﻿using OnionCrafter.Base.Entities;
-using OnionCrafter.Specification.Repository.Base;
 
 namespace OnionCrafter.Specification.Repository
 {
