@@ -1,5 +1,6 @@
 ﻿using OnionCrafter.Base.Entities;
 using OnionCrafter.Base.Services;
+using OnionCrafter.Specification.Context;
 
 namespace OnionCrafter.Specification.Repository.Cache
 {

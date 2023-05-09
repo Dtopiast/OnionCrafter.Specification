@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OnionCrafter.Base.Entities;
+using OnionCrafter.Specification.Context;
 using OnionCrafter.Specification.Utils;
 using System.Collections.Concurrent;
 

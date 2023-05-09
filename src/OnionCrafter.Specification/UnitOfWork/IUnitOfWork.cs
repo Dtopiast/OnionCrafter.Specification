@@ -1,11 +1,6 @@
 ﻿using OnionCrafter.Base.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace OnionCrafter.Specification.Repository
+namespace OnionCrafter.Specification.UnitOfWork
 {
     public interface IUnitOfWork : IService<UnitOfWorkOptions>
     {

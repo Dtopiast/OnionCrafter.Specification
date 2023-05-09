@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OnionCrafter.Base.Entities;
+using OnionCrafter.Specification.Repository;
 using OnionCrafter.Specification.Repository.Cache;
 using OnionCrafter.Specification.Utils;
 
-namespace OnionCrafter.Specification.Repository
+namespace OnionCrafter.Specification.UnitOfWork
 {
     public class UnitOfWork<TDBContext> : IRepositoryFactory, IUnitOfWork<TDBContext>
         where TDBContext : IDBContext
