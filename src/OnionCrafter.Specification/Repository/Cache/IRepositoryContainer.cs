@@ -5,7 +5,7 @@ namespace OnionCrafter.Specification.Repository.Cache
 {
     public interface IRepositoryContainer : IService<RepositoryContainerOptions>
     {
-        public Task<TRepository> GetOrCreateRepositoryAsync<TEntity, TKey, TRepository>()
+        public Task<TRepository> GetOrCreateRepositoryAsync<TEntity, TKey, TRepository>(IDBContext context)
             where TEntity : IEntity<TKey>
             where TRepository : IBaseRepository;
 
