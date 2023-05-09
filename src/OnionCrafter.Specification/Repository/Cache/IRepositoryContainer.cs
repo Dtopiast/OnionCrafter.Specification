@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnionCrafter.Specification.Repository.Cache
 {
-    public class IRepositortyContainer : IService
+    public class IRepositoryContainer : IService
     {
     }
 }
