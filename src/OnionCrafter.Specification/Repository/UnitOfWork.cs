@@ -1,44 +1,71 @@
-﻿using OnionCrafter.Base.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using OnionCrafter.Base.Entities;
+using OnionCrafter.Specification.Repository.Cache;
+using OnionCrafter.Specification.Utils;
 
 namespace OnionCrafter.Specification.Repository
 {
     public class UnitOfWork<TDBContext> : IRepositoryFactory, IUnitOfWork<TDBContext>
         where TDBContext : IDBContext
     {
-        private readonly ILogger<UnitOfWork<TDBContext>>? _logger;
-        private readonly UnitOfWorkOptions _options;
         private readonly TDBContext _context;
+        private readonly ILogger<UnitOfWork<TDBContext>>? _logger;
+        private readonly IRepositoryContainer _repositoryContainer;
 
-        public UnitOfWork(TDBContext context, IOptions<UnitOfWorkOptions> options, ILogger<UnitOfWork<TDBContext>>? logger)
+        public UnitOfWork(TDBContext context, IOptions<UnitOfWorkOptions> config, ILogger<UnitOfWork<TDBContext>>? logger, IRepositoryContainer repositoryContainer)
         {
             _logger = logger;
+            _config = config.Value;
+            _repositoryContainer = repositoryContainer;
             _context = context ?? throw new ArgumentNullException(nameof(context));
-            _options = options.Value;
-            if (_logger == null && _options.UseLogger)
+            if (logger == null && _config.UseLogger)
                 throw new ArgumentNullException("No loggers are registered, if your project does not require logging set the UseLogger option to false in your implementation.");
         }
 
+        public UnitOfWorkOptions _config { get; }
+
         public async Task BeginAsync()
         {
+            if (_config.UseLogger)
+                _logger?.LogInformation(_config.BeginMessageLogger ?? "Begin transaction created");
             await _context.Database.BeginTransactionAsync();
         }
 
-        public async Task<int> CommitAsync()
+        public async Task<bool> CommitAsync()
         {
             await _context.Database.CommitTransactionAsync();
-            return await _context.SaveChangesAsync();
+            var result = await _context.SaveChangesAsync() != 0;
+            if (_config.UseLogger)
+                //agrega la opcion de config para error
+                _logger?.CreateInformationOrErrorLog(result, _config.CommitMessageLogger ?? "commit successfully submitted", "error while sending commit");
+            return result;
         }
 
         public async Task RollbackAsync()
         {
             await _context.Database.RollbackTransactionAsync();
+            if (_config.UseLogger)
+                _logger?.LogInformation("Rollback successfully submitted");
         }
 
+        public async Task<ICompleteRepository<TEntity, TKey>> GetCompleteRepositoryAsync<TEntity, TKey>()
+            where TEntity : IEntity<TKey>
+        {
+            return await _repositoryContainer.GetOrCreateRepositoryAsync<TEntity, TKey, ICompleteRepository<TEntity, TKey>>(_context);
+        }
+
+        public async Task<IReadRepository<TEntity, TKey>> GetReadRepositoryAsync<TEntity, TKey>()
+            where TEntity : IEntity<TKey>
+        {
+            return await _repositoryContainer.GetOrCreateRepositoryAsync<TEntity, TKey, IReadRepository<TEntity, TKey>>(_context);
+        }
+
+        public async Task<IWriteRepository<TEntity, TKey>> GetWriteRepositoryAsync<TEntity, TKey>()
+            where TEntity : IEntity<TKey>
+        {
+            return await _repositoryContainer.GetOrCreateRepositoryAsync<TEntity, TKey, IWriteRepository<TEntity, TKey>>(_context);
+        }
 
         public void Dispose()
         {
