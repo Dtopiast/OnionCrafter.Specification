@@ -1,14 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnionCrafter;
-using OnionCrafter.Base.Entities;
-
-namespace OnionCrafter.Specification
+﻿namespace OnionCrafter.Specification.Repository
 {
-    public interface IBaseRepository<TEntity> : IDisposable where TEntity : IBaseEntity
+    public enum RepositoryPrivilegesType
     {
+        None = 0,
+        Write,
+        Read,
+        Complete
+    }
+
+    public enum RepositoryOriginType
+    {
+        Database,
+        File,
+        Memory,
+    }
+
+    public interface IBaseRepository : IAsyncDisposable
+    {
+        public RepositoryPrivilegesType RepositoryPrivileges { get; }
+        public RepositoryOriginType RepositoryOrigin { get; }
+        public string RepositoryName { get; }
     }
 }
