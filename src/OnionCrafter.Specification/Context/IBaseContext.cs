@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace OnionCrafter.Specification.Context
 {
-    public interface IBaseContext
+    public interface IBaseContext : IAsyncDisposable
     {
         public IQueryable<TEntity> SetEntity<TEntity>() where TEntity : class, IBaseEntity;
 
