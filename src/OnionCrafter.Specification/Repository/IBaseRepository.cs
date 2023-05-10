@@ -10,14 +10,15 @@
 
     public enum RepositoryOriginType
     {
-        Other = 0,
-        Factory,
+        Database,
+        File,
+        Memory,
     }
 
     public interface IBaseRepository : IDisposable
     {
         public RepositoryPrivilegesType RepositoryPrivileges { get; }
-        public RepositoryOriginType RepositoryOriginType { get; }
+        public RepositoryOriginType RepositoryOrigin { get; }
         public string RepositoryName { get; }
     }
 }
