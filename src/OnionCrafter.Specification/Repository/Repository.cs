@@ -1,5 +1,6 @@
 ﻿using OnionCrafter.Base.Entities;
 using OnionCrafter.Specification.Context;
+using System.Text;
 
 namespace OnionCrafter.Specification.Repository
 {
@@ -20,16 +21,39 @@ namespace OnionCrafter.Specification.Repository
         public RepositoryOriginType RepositoryOrigin { get; }
         public string RepositoryName { get; }
 
+        protected string CreateRepositoryName(string? name = null)
         {
-            _context = context;
-            RepositoryPrivileges = repositoryPrivilege;
-            RepositoryOriginType = repositoryOriginType;
-            RepositoryName = repositoryName ?? nameof(TEntity);
-        }
+            List<string> names = new List<string>() { "Repository", "repository" };
+            var builder = new StringBuilder();
+            builder.Append(name ?? nameof(TEntity));
+            foreach (var item in names)
+            {
+                if (builder.ToString().Contains(item))
+                {
+                    builder.Replace(item, null);
+                    break;
+                }
+            }
+            switch (RepositoryPrivileges)
+            {
+                case RepositoryPrivilegesType.Write:
+                    builder.Append("-Write");
+                    break;
 
-        public RepositoryPrivilegesType RepositoryPrivileges { get; }
-        public RepositoryOriginType RepositoryOriginType { get; }
-        public string RepositoryName { get; }
+                case RepositoryPrivilegesType.Read:
+                    builder.Append("-Read");
+                    break;
+
+                case RepositoryPrivilegesType.Complete:
+                    builder.Append("-Complete");
+                    break;
+
+                default:
+                    break;
+            }
+            builder.Append("Repository");
+            return builder.ToString();
+        }
 
         public async Task<bool> AnyAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
         {
