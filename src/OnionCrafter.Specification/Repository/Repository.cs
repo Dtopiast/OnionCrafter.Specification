@@ -6,9 +6,9 @@ namespace OnionCrafter.Specification.Repository
     public class Repository<TEntity, TKey> : ICompleteRepository<TEntity, TKey>
         where TEntity : IEntity<TKey>
     {
-        private readonly IDBContext _context;
+        private readonly IBaseContext _context;
 
-        public Repository(IDBContext context)
+        public Repository(IBaseContext context)
         {
             _context = context;
         }
