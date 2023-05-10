@@ -46,7 +46,7 @@ namespace OnionCrafter.Specification.UnitOfWork
 
         public async Task RollbackAsync()
         {
-            await _context.Database.RollbackTransactionAsync();
+            await _context.RollbackTransactionAsync();
             if (_config.UseLogger)
                 _logger?.LogInformation("Rollback successfully submitted");
         }
@@ -69,9 +69,9 @@ namespace OnionCrafter.Specification.UnitOfWork
             return await _repositoryContainer.GetOrCreateRepositoryAsync<TEntity, TKey, IWriteRepository<TEntity, TKey>>(_context);
         }
 
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
-            _context.Dispose();
+            await _context.DisposeAsync();
             GC.SuppressFinalize(this);
         }
     }
