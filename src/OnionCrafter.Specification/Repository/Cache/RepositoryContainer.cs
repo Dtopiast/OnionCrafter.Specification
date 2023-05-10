@@ -27,7 +27,7 @@ namespace OnionCrafter.Specification.Repository.Cache
             return await Task.Run(() => _repositories.Count());
         }
 
-        public async Task<TRepository> GetOrCreateRepositoryAsync<TEntity, TKey, TRepository>(IDBContext context)
+        public async Task<TRepository> GetOrCreateRepositoryAsync<TEntity, TKey, TRepository>(IBaseContext context)
             where TEntity : IEntity<TKey>
             where TRepository : IBaseRepository
         {

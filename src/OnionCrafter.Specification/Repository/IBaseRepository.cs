@@ -7,8 +7,17 @@
         Read,
         Complete
     }
+
+    public enum RepositoryOriginType
+    {
+        Other = 0,
+        Factory,
+    }
+
     public interface IBaseRepository : IDisposable
     {
         public RepositoryPrivilegesType RepositoryPrivileges { get; }
+        public RepositoryOriginType RepositoryOriginType { get; }
+        public string RepositoryName { get; }
     }
 }
