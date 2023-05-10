@@ -15,6 +15,12 @@
         Memory,
     }
 
+    public enum RepositoryCreationType
+    {
+        Other = 0,
+        Factory,
+    }
+
     public interface IBaseRepository : IAsyncDisposable
     {
         public RepositoryPrivilegesType RepositoryPrivileges { get; }
