@@ -8,12 +8,18 @@ namespace OnionCrafter.Specification.Repository
     {
         private readonly IBaseContext _context;
 
-        public Repository(IBaseContext context)
+        public Repository(IBaseContext context, RepositoryPrivilegesType repositoryPrivileges, RepositoryOriginType repositoryOrigin, string? repositoryName = null)
         {
             _context = context;
+            RepositoryOrigin = repositoryOrigin;
+            RepositoryPrivileges = repositoryPrivileges;
+            RepositoryName = CreateRepositoryName(repositoryName);
         }
 
-        public Repository(IBaseContext context, RepositoryPrivilegesType repositoryPrivilege, RepositoryOriginType repositoryOriginType, string? repositoryName = null)
+        public RepositoryPrivilegesType RepositoryPrivileges { get; }
+        public RepositoryOriginType RepositoryOrigin { get; }
+        public string RepositoryName { get; }
+
         {
             _context = context;
             RepositoryPrivileges = repositoryPrivilege;
