@@ -39,8 +39,10 @@ namespace OnionCrafter.Specification.UnitOfWork
             await _context.CommitTransactionAsync();
             var result = await _context.SaveChangesAsync();
             if (_config.UseLogger)
-                //agrega la opcion de config para error
                 _logger?.CreateInformationOrErrorLog(result, _config.CommitMessageLogger ?? "commit successfully submitted", "error while sending commit");
+
+            if (!result)
+                await _context.RollbackTransactionAsync();
             return result;
         }
 
