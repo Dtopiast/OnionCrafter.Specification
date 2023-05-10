@@ -15,7 +15,7 @@
         Memory,
     }
 
-    public interface IBaseRepository : IDisposable
+    public interface IBaseRepository : IAsyncDisposable
     {
         public RepositoryPrivilegesType RepositoryPrivileges { get; }
         public RepositoryOriginType RepositoryOrigin { get; }
