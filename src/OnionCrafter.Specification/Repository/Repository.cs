@@ -15,27 +15,27 @@ namespace OnionCrafter.Specification.Repository
 
         public RepositoryPrivilegesType RepositoryPrivileges => RepositoryPrivilegesType.Complete;
 
-        public Task<bool> AnyAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
+        public async Task<bool> AnyAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> AnyAsync(CancellationToken cancellationToken = default)
+        public async Task<bool> AnyAsync(CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> CountAsync(CancellationToken cancellationToken = default)
+        public async Task<int> CountAsync(CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
+        public async Task CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<TEntity>> CreateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
+        public async Task CreateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
@@ -45,47 +45,47 @@ namespace OnionCrafter.Specification.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<TEntity>> GetAllAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<TEntity>> GetAllAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TEntity?> GetByIdAsync(TKey id, CancellationToken cancellationToken = default)
+        public async Task<TEntity?> GetByIdAsync(TKey id, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TEntity?> GetFirstOrDefaultAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
+        public async Task<TEntity?> GetFirstOrDefaultAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TEntity?> GetSingleOrDefaultAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
+        public async Task<TEntity?> GetSingleOrDefaultAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> RemoveAsync(TEntity entity, CancellationToken cancellationToken = default)
+        public async Task RemoveAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> RemoveRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
+        public async Task RemoveRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
+        public async Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
+        public async Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
