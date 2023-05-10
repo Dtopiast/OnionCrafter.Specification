@@ -8,14 +8,14 @@ using OnionCrafter.Specification.Utils;
 
 namespace OnionCrafter.Specification.UnitOfWork
 {
-    public class UnitOfWork<TDBContext> : IRepositoryFactory, IUnitOfWork<TDBContext>
-        where TDBContext : IDBContext
+    public class UnitOfWork<TContext> : IRepositoryFactory, IUnitOfWork<TContext>
+        where TContext : IBaseContext
     {
-        private readonly TDBContext _context;
-        private readonly ILogger<UnitOfWork<TDBContext>>? _logger;
+        private readonly TContext _context;
+        private readonly ILogger<UnitOfWork<TContext>>? _logger;
         private readonly IRepositoryContainer _repositoryContainer;
 
-        public UnitOfWork(TDBContext context, IOptions<UnitOfWorkOptions> config, ILogger<UnitOfWork<TDBContext>>? logger, IRepositoryContainer repositoryContainer)
+        public UnitOfWork(TContext context, IOptions<UnitOfWorkOptions> config, ILogger<UnitOfWork<TContext>>? logger, IRepositoryContainer repositoryContainer)
         {
             _logger = logger;
             _config = config.Value;
@@ -31,13 +31,13 @@ namespace OnionCrafter.Specification.UnitOfWork
         {
             if (_config.UseLogger)
                 _logger?.LogInformation(_config.BeginMessageLogger ?? "Begin transaction created");
-            await _context.Database.BeginTransactionAsync();
+            await _context.BeginTransactionAsync();
         }
 
         public async Task<bool> CommitAsync()
         {
-            await _context.Database.CommitTransactionAsync();
-            var result = await _context.SaveChangesAsync() != 0;
+            await _context.CommitTransactionAsync();
+            var result = await _context.SaveChangesAsync();
             if (_config.UseLogger)
                 //agrega la opcion de config para error
                 _logger?.CreateInformationOrErrorLog(result, _config.CommitMessageLogger ?? "commit successfully submitted", "error while sending commit");
