@@ -10,12 +10,12 @@ namespace OnionCrafter.Specification.Repository.Cache
     public class RepositoryContainer : IRepositoryContainer
     {
         private readonly ILogger<RepositoryContainer>? _logger;
-        private readonly ConcurrentDictionary<Type, object> _repositories;
+        private readonly ConcurrentDictionary<string, object> _repositories;
         public RepositoryContainerOptions _config { get; }
 
         public RepositoryContainer(ILogger<RepositoryContainer>? logger, IOptions<RepositoryContainerOptions> config)
         {
-            _repositories = new ConcurrentDictionary<Type, object>();
+            _repositories = new ConcurrentDictionary<string, object>();
             _config = config.Value;
             _logger = logger;
             if (logger == null && _config.UseLogger)
