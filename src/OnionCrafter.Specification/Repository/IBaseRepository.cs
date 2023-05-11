@@ -1,4 +1,6 @@
-﻿namespace OnionCrafter.Specification.Repository
+﻿using OnionCrafter.Base.Services;
+
+namespace OnionCrafter.Specification.Repository
 {
     public enum RepositoryPrivilegesType
     {
@@ -13,9 +15,10 @@
         Database,
         File,
         Memory,
+        Api,
     }
 
-    public interface IBaseRepository : IAsyncDisposable
+    public interface IBaseRepository : IService<RepositoryOptions>, IAsyncDisposable
     {
         public RepositoryPrivilegesType RepositoryPrivileges { get; }
         public RepositoryOriginType RepositoryOrigin { get; }
