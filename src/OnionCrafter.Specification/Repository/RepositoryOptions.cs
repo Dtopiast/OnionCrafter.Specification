@@ -9,8 +9,8 @@ namespace OnionCrafter.Specification.Repository
 {
     public class RepositoryOptions : IServiceOptions
     {
-        public RepositoryPrivilegesType RepositoryPrivileges { get; }
-        public RepositoryOriginType RepositoryOrigin { get; }
-        public string? RepositoryName { get; }
+        public RepositoryPrivilegesType SetRepositoryPrivileges { get; set; }
+        public RepositoryOriginType SetRepositoryOrigin { get; set; }
+        public string? SetRepositoryName { get; set; }
     }
 }
