@@ -2,6 +2,8 @@
 
 [![NuGet](https://img.shields.io/nuget/v/OnionCrafter.Specification.svg)](https://www.nuget.org/packages/OnionCrafter.Specification/)
 
+![](https://github.com/Dtopiast/OnionCrafter.Base/blob/main/Images/Logo.png)
+
 OnionCrafter.Specification es una librería de .NET 7 que proporciona una base sólida para la implementación del patrón de especificación de repositorio dentro de una arquitectura onion.
 
 ## Características
