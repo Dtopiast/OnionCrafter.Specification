@@ -1,28 +1,21 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using OnionCrafter.Base.Services;
-using OnionCrafter.Specification.Repository.Cache;
-using OnionCrafter.Specification.UnitOfWork;
+using OnionCrafter.Base.Utils;
+using OnionCrafter.Service.DependencyInjection;
+using OnionCrafter.Specification.Repositories.General;
+using OnionCrafter.Specification.Repositories.General.Options;
 
 namespace OnionCrafter.Specification.DependencyInjection
 {
     public static class ServiceExtensions
     {
-        public static IServiceCollection AddRepositoryFactory(this IServiceCollection services, Action<UnitOfWorkOptions> unitOfWorkOptions, Action<RepositoryContainerOptions> repositoryContainerOptions)
+        public static IServiceCollection AddRepository<TOptions>(this IServiceCollection services, Type repositoryService, Type repositoryImplementation, Action<TOptions>? options = null)
+            where TOptions : class, IBaseRepositoryOptions
         {
-            services.AddTypedSingletonWithOptions<RepositoryContainerOptions>(typeof(IRepositoryContainer), typeof(RepositoryContainer), repositoryContainerOptions);
-            services.AddTypedSingletonWithOptions<UnitOfWorkOptions>(typeof(IUnitOfWork<>), typeof(UnitOfWork<>), unitOfWorkOptions);
-            return services;
-        }
-        public static IServiceCollection AddRepositoryFactory(this IServiceCollection services, Action<UnitOfWorkOptions> unitOfWorkOptions)
-        {
-            services.AddTypedSingleton(typeof(IRepositoryContainer), typeof(RepositoryContainer));
-            services.AddTypedSingletonWithOptions<UnitOfWorkOptions>(typeof(IUnitOfWork<>), typeof(UnitOfWork<>), unitOfWorkOptions);
-            return services;
-        }
-        public static IServiceCollection AddRepositoryFactory(this IServiceCollection services)
-        {
-            services.AddTypedSingleton(typeof(IRepositoryContainer), typeof(RepositoryContainer));
-            services.AddTypedSingleton(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+            TypeExtensions.EnsureValidImplement(repositoryService, typeof(IBaseRepository));
+            if (options != null)
+                services.AddTypedScoped(repositoryService, repositoryImplementation, options);
+            else
+                services.AddTypedScoped(repositoryService, repositoryImplementation);
             return services;
         }
     }

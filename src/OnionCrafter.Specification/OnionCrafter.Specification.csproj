@@ -7,8 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
-    <PackageReference Include="OnionCrafter.Base" Version="1.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
+    <PackageReference Include="OnionCrafter.Base" Version="1.0.4" />
+    <PackageReference Include="OnionCrafter.DataAccess" Version="1.0.0" />
+    <PackageReference Include="OnionCrafter.Service" Version="1.0.1" />
   </ItemGroup>
 
 </Project>
