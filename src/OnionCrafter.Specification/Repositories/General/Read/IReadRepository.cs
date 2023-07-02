@@ -1,20 +1,26 @@
 ﻿using OnionCrafter.Base.Entities;
+using OnionCrafter.DataAccess.Context;
 using OnionCrafter.Service.Options.Globals;
 using OnionCrafter.Specification.Repositories.General;
 using OnionCrafter.Specification.Repositories.General.Options;
 
-namespace OnionCrafter.Specification.Repositories.Read
+namespace OnionCrafter.Specification.Repositories.General.Read
 {
     /// <summary>
-    /// Represents a generic repository interface for read operations on entities.
+    /// Represents a read repository.
     /// </summary>
-    /// <typeparam name="TKey">The type of the entity's primary key.</typeparam>
+    /// <typeparam name="TKey">The type of the entity key.</typeparam>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
+    /// <typeparam name="TContext">The type of the database context.</typeparam>
     /// <typeparam name="TGlobalServiceOptions">The type of the global service options.</typeparam>
-    public interface IReadGenericRepository<TKey, TEntity, TGlobalServiceOptions> : IBaseRepository
+
+    public interface IReadRepository<TKey, TEntity, TContext, TGlobalServiceOptions> :
+        IBaseReadRepository<TContext>
         where TEntity : class, IBaseEntity
         where TKey : notnull, IEquatable<TKey>, IComparable<TKey>
+        where TContext : class, IBaseDataAccessContext
         where TGlobalServiceOptions : IBaseGlobalOptions
+
     {
         /// <summary>
         /// Checks if any entity in the repository satisfies the given specification asynchronously.
@@ -22,7 +28,7 @@ namespace OnionCrafter.Specification.Repositories.Read
         /// <param name="specification">The specification to check.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains a value indicating whether any entity satisfies the specification.</returns>
-        abstract Task<bool> AnyAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default);
+        abstract Task<bool> AnyAsync(ISpecification<TEntity, bool> specification, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Checks if the repository contains any entities asynchronously.
@@ -83,13 +89,17 @@ namespace OnionCrafter.Specification.Repositories.Read
     /// </summary>
     /// <typeparam name="TKey">The type of the entity's primary key.</typeparam>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
+    /// <typeparam name="TContext">The type of the database context.</typeparam>
     /// <typeparam name="TGlobalServiceOptions">The type of the global service options.</typeparam>
     /// <typeparam name="TRepositoryOptions">The type of the repository options.</typeparam>
-    public interface IReadGenericRepository<TKey, TEntity, TGlobalServiceOptions, TRepositoryOptions> : IBaseRepository<TRepositoryOptions>, IReadGenericRepository<TKey, TEntity, TGlobalServiceOptions>
+    public interface IReadRepository<TKey, TEntity, TContext, TGlobalServiceOptions, TRepositoryOptions> :
+        IBaseReadRepository<TContext, TRepositoryOptions>,
+        IReadRepository<TKey, TEntity, TContext, TGlobalServiceOptions>
         where TEntity : class, IBaseEntity
         where TKey : notnull, IEquatable<TKey>, IComparable<TKey>
         where TRepositoryOptions : IBaseRepositoryOptions
         where TGlobalServiceOptions : IBaseGlobalOptions
+        where TContext : class, IBaseDataAccessContext
     {
     }
 }

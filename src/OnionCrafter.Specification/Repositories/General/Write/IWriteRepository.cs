@@ -1,9 +1,10 @@
 ﻿using OnionCrafter.Base.Entities;
+using OnionCrafter.DataAccess.Context;
 using OnionCrafter.Service.Options.Globals;
 using OnionCrafter.Specification.Repositories.General.Options;
-using OnionCrafter.Specification.Repositories.Read;
+using OnionCrafter.Specification.Repositories.General.Read;
 
-namespace OnionCrafter.Specification.Repositories.Write
+namespace OnionCrafter.Specification.Repositories.General.Write
 {
     /// <summary>
     /// Represents a generic repository interface for write operations on entities.
@@ -11,10 +12,13 @@ namespace OnionCrafter.Specification.Repositories.Write
     /// <typeparam name="TKey">The type of the entity's primary key.</typeparam>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     /// <typeparam name="TGlobalServiceOptions">The type of the global service options.</typeparam>
-    public interface IWriteGenericRepository<TKey, TEntity, TGlobalServiceOptions> : IReadGenericRepository<TKey, TEntity, TGlobalServiceOptions>
+    public interface IWriteRepository<TKey, TEntity, TContext, TGlobalServiceOptions> :
+        IReadRepository<TKey, TEntity, TContext, TGlobalServiceOptions>
         where TEntity : class, IBaseEntity
         where TKey : notnull, IEquatable<TKey>, IComparable<TKey>
         where TGlobalServiceOptions : IBaseGlobalOptions
+        where TContext : class, IBaseDataAccessContext
+
     {
         /// <summary>
         /// Creates a new entity asynchronously.
@@ -72,11 +76,16 @@ namespace OnionCrafter.Specification.Repositories.Write
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     /// <typeparam name="TGlobalServiceOptions">The type of the global service options.</typeparam>
     /// <typeparam name="TRepositoryOptions">The type of the repository options.</typeparam>
-    public interface IWriteGenericRepository<TKey, TEntity, TGlobalServiceOptions, TRepositoryOptions> : IWriteGenericRepository<TKey, TEntity, TGlobalServiceOptions>
+    /// <typeparam name="TContext">The type of the database context.</typeparam>
+
+    public interface IWriteRepository<TKey, TEntity, TContext, TGlobalServiceOptions, TRepositoryOptions> :
+        IWriteRepository<TKey, TEntity, TContext, TGlobalServiceOptions>,
+        IBaseWriteRepository<TContext, TRepositoryOptions>
         where TEntity : class, IBaseEntity
         where TKey : notnull, IEquatable<TKey>, IComparable<TKey>
         where TGlobalServiceOptions : IBaseGlobalOptions
         where TRepositoryOptions : IBaseRepositoryOptions
+        where TContext : class, IBaseDataAccessContext
     {
     }
 }

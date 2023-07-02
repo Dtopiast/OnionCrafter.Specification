@@ -43,7 +43,17 @@ namespace OnionCrafter.Specification.Repositories.General
     /// <summary>
     /// Interface for a base repository that implements <see cref="IBaseService"/> and <see cref="IDataAccessDetails"/>.
     /// </summary>
-    public interface IBaseRepository : IBaseService, IDataAccessDetails
+    public interface IBaseRepository :
+        IBaseService,
+        IDataAccessDetails
+    {
+    }
+
+    /// <summary>
+    /// Interface for a base repository that implements <see cref="IBaseService"/> and <see cref="IDataAccessDetails"/>.
+    /// </summary>
+    public interface IBaseRepository<TContext> :
+        IBaseRepository
     {
     }
 
@@ -51,7 +61,9 @@ namespace OnionCrafter.Specification.Repositories.General
     /// Interface for a base repository that implements <see cref="IBaseRepository"/> and <see cref="IBaseService{TBaseRepositoryOptions}"/>.
     /// </summary>
     /// <typeparam name="TBaseRepositoryOptions">The type of the base repository options.</typeparam>
-    public interface IBaseRepository<TBaseRepositoryOptions> : IBaseRepository, IBaseService<TBaseRepositoryOptions>
+    public interface IBaseRepository<TContext, TBaseRepositoryOptions> :
+        IBaseRepository<TContext>,
+        IBaseService<TBaseRepositoryOptions>
         where TBaseRepositoryOptions : IBaseRepositoryOptions
     {
     }
